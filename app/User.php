@@ -34,4 +34,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function shopping_locations()
+    {
+        return $this->hasMany('App\ShoppingLocation','user_id');
+    }
+    
+    public function user_speciality()
+    {
+        return $this->hasMany('App\UserSpecialty','user_id');
+    }
 }

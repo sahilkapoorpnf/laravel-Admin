@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>ProUI - Responsive Bootstrap Admin Template</title>
+        <title>ZGRT Admin Panel</title>
 
         <meta name="description" content="ProUI is a Responsive Bootstrap Admin Template created by pixelcave and published on Themeforest.">
         <meta name="author" content="pixelcave">
@@ -58,7 +58,7 @@
             <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
             <!-- Used only if page preloader is enabled from inc/config (PHP version) or the class 'page-loading' is added in #page-wrapper element (HTML version) -->
             <div class="preloader themed-background">
-                <h1 class="push-top-bottom text-light text-center"><strong>Pro</strong>UI</h1>
+                <h1 class="push-top-bottom text-light text-center"><strong>ZGRT</strong>Admin Panel</h1>
                 <div class="inner">
                     <h3 class="text-light visible-lt-ie9 visible-lt-ie10"><strong>Loading..</strong></h3>
                     <div class="preloader-spinner hidden-lt-ie9 hidden-lt-ie10"></div>
@@ -232,7 +232,7 @@
                                 </div>
                                 <div class="alert alert-success alert-alt">
                                     <small>3 hours ago</small><br>
-                                    <i class="fa fa-plus fa-fw"></i> <a href="page_ready_user_profile.html"><strong>John Doe</strong></a> would like to become friends!<br>
+                                    
                                     <a href="javascript:void(0)" class="btn btn-xs btn-primary"><i class="fa fa-check"></i> Accept</a>
                                     <a href="javascript:void(0)" class="btn btn-xs btn-default"><i class="fa fa-times"></i> Ignore</a>
                                 </div>
@@ -243,7 +243,9 @@
                                 </div>
                             </div>
                             <!-- END Activity -->
-
+@php 
+                                        $encodedUserId=encrypt(Auth::user()->id);
+                                        @endphp
                             <!-- Messages -->
                             <a href="page_ready_inbox.html" class="sidebar-title">
                                 <i class="fa fa-envelope pull-right"></i> <strong>Messages</strong>UI (5)
@@ -285,15 +287,15 @@
                         <!-- Sidebar Content -->
                         <div class="sidebar-content">
                             <!-- Brand -->
-                            <a href="index.html" class="sidebar-brand">
-                                <i class="gi gi-flash"></i><span class="sidebar-nav-mini-hide"><strong>Pro</strong>UI</span>
+                            <a href="{{url('/admin')}}" class="sidebar-brand">
+                                <i class="gi gi-flash"></i><span class="sidebar-nav-mini-hide"><strong>ZGRT </strong>Admin Panel</span>
                             </a>
                             <!-- END Brand -->
 
                             <!-- User Info -->
                             <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
                                 <div class="sidebar-user-avatar">
-                                    <a href="page_ready_user_profile.html">
+                                    <a href="javascript:void(0)" onclick="window.location.href='{{url('admin/admin-profile/'.$encodedUserId)}}'">
                                         <img src="{{asset('../storage/files/'.Auth::user()->image)}}" alt="avatar">
                                     </a>
                                 </div>
@@ -307,7 +309,7 @@
                                     </a>
                                     
                                     <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
-                                    <a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Settings" onclick="$('#modal-user-settings').modal('show');"><i class="gi gi-cogwheel"></i></a>
+                                    <a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Settings" onclick="window.location.href='{{url('admin/admin-setting/'.$encodedUserId)}}'"><i class="gi gi-cogwheel"></i></a>
                                     <a data-toggle="tooltip" data-placement="bottom" title="Logout" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

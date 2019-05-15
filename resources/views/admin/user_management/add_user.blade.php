@@ -54,8 +54,10 @@
                     <div class="col-md-6">
                         <div class="input-group">
                             <select name="user_type" class="form-control">
-                                <option value="">--Select User Type</option>
-                                <option value="default">Default</option>
+                                <option value="">--Select User Type--</option>
+                                @foreach($userTypes as $userType)
+                                <option value="{{$userType->title}}">{{$userType->title}}</option>
+                                @endforeach
                             </select>
                             <span class="input-group-addon"><i class="gi gi-user"></i></span>
                         </div>

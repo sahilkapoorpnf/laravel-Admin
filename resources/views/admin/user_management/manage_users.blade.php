@@ -12,7 +12,7 @@
 </div>
 <ul class="breadcrumb breadcrumb-top">
     <li>Users</li>
-    <li><a href="{{url('manage-users')}}">Manage Users</a></li>
+    <li><a href="{{url('admin/manage-users')}}">Manage Users</a></li>
 </ul>
 <!-- END Datatables Header -->
 
@@ -21,7 +21,9 @@
     <div class="block-title">
         <h2><strong>Manage</strong> users</h2>
     </div>
-
+    <a href="{{url('admin/manage-users')}}"><button type="button" class="btn btn-primary">All Users</button></a> 
+    <a href="{{url('admin/manage-stylists')}}"><button type="button" class="btn btn-success">All Stylists</button></a> 
+    
     @if(session()->has('success'))
     <div class="alert alert-success">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -36,6 +38,10 @@
                     <th class="text-center"><i class="gi gi-user"></i></th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>User Type</th>
+                    @if($url_data[1]=='manage-stylists')
+                    <th>Bookings</th>
+                    @endif
                     <th>Status</th>
                     <th class="text-center">Actions</th>
                 </tr>
@@ -51,6 +57,10 @@
                     <td class="text-center"><img src="{{asset('img/placeholders/avatars/avatar12.jpg')}}" alt="avatar" class="img-circle"></td>
                     <td><a href="javascript:void(0)">{{$allUser->name}}</a></td>
                     <td>{{$allUser->email}}</td>
+                    <td>{{$allUser->type}}</td>
+                    @if($url_data[1]=='manage-stylists')
+                    <td><a href="{{url('admin/stylist-bookings/'.$allUser->id)}}"><button type="button" class="btn btn-success">See Bookings</button></a> </td>
+                    @endif
                     <td><span title="click to change status" onclick="window.location.href='{{url('admin/update-users-status/'.$encodedUserId)}}'" class="label {{$allUser->status=='1' ? 'label-success' : 'label-danger'}}">{{$allUser->status=='1' ? 'Click to Deactive' : 'Click to Activate'}}</span></td>                    <td class="text-center">
                         <div class="btn-group">
                             <a href="javascript:void(0)" onclick="window.location.href='{{url('admin/edit-user/'.$encodedUserId)}}'" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>

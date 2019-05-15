@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('users.home');
     }
+    
+    //Get all flash screen record START
+    public function flash_data(Request $request){
+        die('df');
+    }
+    //Get all flash screen record END
 }

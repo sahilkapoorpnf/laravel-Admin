@@ -44,6 +44,7 @@ class LoginController extends Controller
       }
 
       elseif (\Auth::user()->type == 'admin') {
+         
           return '/admin';
       }
 
